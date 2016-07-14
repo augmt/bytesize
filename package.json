@@ -1,0 +1,27 @@
+{
+  "name": "bytesize",
+  "version": "1.0.0",
+  "description": "File Metadata Microservice",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "express": "4.14.0",
+    "multer": "1.1.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/augmt/bytesize.git"
+  },
+  "author": "Hector Garcia",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/augmt/bytesize/issues"
+  },
+  "homepage": "https://github.com/augmt/bytesize#readme"
+}
