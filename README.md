@@ -1,5 +1,10 @@
-# [API Basejump][1]: File Metadata Microservice
+File Metadata Microservice
+==========================
 
-[1]: https://www.freecodecamp.com/challenges/file-metadata-microservice
+Send FormData containing a file and the microservice will return a JSON response
+with the file's size in bytes.
 
-Upload any kind of file to see its size in bytes.
+Notes
+-----
+The microservice can ONLY be accessed via POST requests.  
+The microservice supports CORS requests from any origin.

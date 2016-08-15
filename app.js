@@ -1,11 +1,11 @@
 'use strict';
 
-const express = require('express');
-const app = express();
-const upload = require('multer')();
+const Koa = require('koa');
 
-app.use(express.static('public'));
-app.post('/', upload.single('file'), (req, res) => {
-    res.json({filesize: req.file.size});
-});
-app.listen(process.env.PORT);
+const cors = require('kcors');
+const router = require('./routes.js');
+
+const app = module.exports = new Koa();
+
+app.use(cors());
+app.use(router.routes());
