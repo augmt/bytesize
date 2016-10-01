@@ -1,32 +1,26 @@
 'use strict';
 
-const request = require('supertest');
+import test from 'tape';
+import { expect } from 'chai';
+import request from 'supertest';
+import app from './../src/app.js';
 
-const fs = require('fs');
+const server = app.listen();
 
-const server = require('./../app.js').listen();
+test(app.name, (t) => {
+  t.plan(2);
 
-describe('app', function () {
-  it('should process form-data that includes a file upload', function (done) {
-    request(server)
-      .post('/')
-      .attach('file', 'test/mock.txt')
-      .expect(200, done);
-  });
+  request(server)
+    .post('/')
+    .attach('file', 'test/dummy.txt')
+    .expect('Content-Type', /json/)
+    .end((err) => t.ifError(err, 'content-type should be json'));
 
-  it('should respond with json', function (done) {
-    request(server)
-      .post('/')
-      .attach('file', 'test/mock.txt')
-      .expect('Content-Type', 'application/json; charset=utf-8', done);
-  });
-
-  it('should respond with the input file\'s size in bytes', function (done) {
-    const stats = fs.statSync('test/mock.txt');
-
-    request(server)
-      .post('/')
-      .attach('file', 'test/mock.txt')
-      .expect({filesize: stats.size}, done);
-  });
+  request(server)
+    .post('/')
+    .attach('file', 'test/dummy.txt')
+    .expect((res) => expect(res.body).to.deep.equal({filesize: 23}))
+    .end((err) => t.ifError(err, 'should respond with the input file\'s size in bytes'));
 });
+
+test.onFinish(() => server.close());
