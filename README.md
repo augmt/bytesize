@@ -1,6 +1,6 @@
 # File Metadata Microservice
 
-File Metadata Microservice returns any file's size in bytes.
+File Metadata Microservice is a REST API which returns any file's size in bytes.
 
 ## Resources
 
